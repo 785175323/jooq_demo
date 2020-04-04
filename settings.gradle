@@ -1,0 +1,3 @@
+rootProject.name = 'jooq-demo'
+include 'dao'
+include 'web'

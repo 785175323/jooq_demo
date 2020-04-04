@@ -1,0 +1,11 @@
+jar.enabled = true
+bootJar.enabled = true
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-jdbc"
+    compile "com.zaxxer:HikariCP:${HikariCP}"
+    runtimeOnly "mysql:mysql-connector-java"
+
+    compile project(":dao")
+}
