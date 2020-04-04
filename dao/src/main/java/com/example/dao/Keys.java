@@ -7,6 +7,7 @@ package com.example.dao;
 import com.example.dao.tables.Student;
 import com.example.dao.tables.records.StudentRecord;
 
+import org.jooq.Identity;
 import org.jooq.TableField;
 import org.jooq.UniqueKey;
 import org.jooq.impl.Internal;
@@ -23,6 +24,7 @@ public class Keys {
     // IDENTITY definitions
     // -------------------------------------------------------------------------
 
+    public static final Identity<StudentRecord, Integer> IDENTITY_STUDENT = Identities0.IDENTITY_STUDENT;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
@@ -38,6 +40,10 @@ public class Keys {
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
     // -------------------------------------------------------------------------
+
+    private static class Identities0 {
+        public static Identity<StudentRecord, Integer> IDENTITY_STUDENT = Internal.createIdentity(Student.STUDENT, Student.STUDENT.ID);
+    }
 
     private static class UniqueKeys0 {
         public static final UniqueKey<StudentRecord> KEY_STUDENT_PRIMARY = Internal.createUniqueKey(Student.STUDENT, "KEY_student_PRIMARY", new TableField[] { Student.STUDENT.ID }, true);

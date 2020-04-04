@@ -92,20 +92,6 @@ public class StudentDao extends DAOImpl<StudentRecord, com.example.dao.tables.po
     }
 
     /**
-     * Fetch records that have <code>class BETWEEN lowerInclusive AND upperInclusive</code>
-     */
-    public List<com.example.dao.tables.pojos.Student> fetchRangeOfClass(String lowerInclusive, String upperInclusive) {
-        return fetchRange(Student.STUDENT.CLASS, lowerInclusive, upperInclusive);
-    }
-
-    /**
-     * Fetch records that have <code>class IN (values)</code>
-     */
-    public List<com.example.dao.tables.pojos.Student> fetchByClass(String... values) {
-        return fetch(Student.STUDENT.CLASS, values);
-    }
-
-    /**
      * Fetch records that have <code>age BETWEEN lowerInclusive AND upperInclusive</code>
      */
     public List<com.example.dao.tables.pojos.Student> fetchRangeOfAge(Integer lowerInclusive, Integer upperInclusive) {

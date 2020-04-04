@@ -8,8 +8,6 @@ import org.jooq.conf.Settings;
 import org.jooq.impl.DataSourceConnectionProvider;
 import org.jooq.impl.DefaultConfiguration;
 import org.jooq.impl.DefaultDSLContext;
-import org.jooq.impl.DefaultExecuteListenerProvider;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -57,21 +55,10 @@ public class JooqConfig {
         return new DataSourceConnectionProvider(dataSource);
     }
 
-    @Bean("myExceptionTranslator")
-    public ExceptionTranslator exceptionTranslator() {
-        return new ExceptionTranslator();
-    }
-
-
-    @Bean("myExecuteListenerProvider")
-    public DefaultExecuteListenerProvider executeListenerProvider(@Qualifier("myExceptionTranslator") ExceptionTranslator exceptionTranslator) {
-        return new DefaultExecuteListenerProvider(exceptionTranslator);
-    }
 
     @Bean
     public DefaultConfiguration defaultConfiguration(DataSource dataSource,
-                                                     DataSourceConnectionProvider myConnectionProvider,
-                                                     DefaultExecuteListenerProvider myExecuteListenerProvider) {
+                                                     DataSourceConnectionProvider myConnectionProvider) {
         DefaultConfiguration defaultConfiguration = new DefaultConfiguration();
         defaultConfiguration.setDataSource(dataSource);
         defaultConfiguration.set(new Settings().
@@ -79,7 +66,6 @@ public class JooqConfig {
                 withRenderSchema(false).
                 withRenderKeywordCase(RenderKeywordCase.UPPER).
                 withRenderQuotedNames(RenderQuotedNames.NEVER));
-        defaultConfiguration.setExecuteListenerProvider(myExecuteListenerProvider);
         defaultConfiguration.setConnectionProvider(myConnectionProvider);
         return defaultConfiguration;
     }

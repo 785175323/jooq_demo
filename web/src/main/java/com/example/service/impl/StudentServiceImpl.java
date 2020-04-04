@@ -33,4 +33,21 @@ public class StudentServiceImpl implements StudentService {
                 where(com.example.dao.tables.Student.STUDENT.ID.eq(id)).
                 fetchOneInto(Student.class);
     }
+
+    @Override
+    public void delete(List<Integer> id) {
+        studentDao.deleteById(id);
+    }
+
+    @Override
+    public void update(Student student) {
+        studentDao.update(student);
+    }
+
+    @Override
+    public Integer insert(Student student) {
+        // dslContext.newRecord(com.example.dao.tables.Student.STUDENT, student).insert();
+        studentDao.insert(student);
+        return student.getId();
+    }
 }

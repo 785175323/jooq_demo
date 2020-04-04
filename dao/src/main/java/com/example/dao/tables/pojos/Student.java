@@ -13,12 +13,11 @@ import java.io.Serializable;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Student implements Serializable {
 
-    private static final long serialVersionUID = -1592141079;
+    private static final long serialVersionUID = -366211042;
 
     private Integer id;
     private String  name;
     private Long    score;
-    private String  class_;
     private Integer age;
 
     public Student() {}
@@ -27,7 +26,6 @@ public class Student implements Serializable {
         this.id = value.id;
         this.name = value.name;
         this.score = value.score;
-        this.class_ = value.class_;
         this.age = value.age;
     }
 
@@ -35,13 +33,11 @@ public class Student implements Serializable {
         Integer id,
         String  name,
         Long    score,
-        String  class_,
         Integer age
     ) {
         this.id = id;
         this.name = name;
         this.score = score;
-        this.class_ = class_;
         this.age = age;
     }
 
@@ -69,14 +65,6 @@ public class Student implements Serializable {
         this.score = score;
     }
 
-    public String getClass_() {
-        return this.class_;
-    }
-
-    public void setClass_(String class_) {
-        this.class_ = class_;
-    }
-
     public Integer getAge() {
         return this.age;
     }
@@ -92,7 +80,6 @@ public class Student implements Serializable {
         sb.append(id);
         sb.append(", ").append(name);
         sb.append(", ").append(score);
-        sb.append(", ").append(class_);
         sb.append(", ").append(age);
 
         sb.append(")");

@@ -13,9 +13,10 @@ import java.util.List;
 
 import org.jooq.Field;
 import org.jooq.ForeignKey;
+import org.jooq.Identity;
 import org.jooq.Name;
 import org.jooq.Record;
-import org.jooq.Row5;
+import org.jooq.Row4;
 import org.jooq.Schema;
 import org.jooq.Table;
 import org.jooq.TableField;
@@ -31,7 +32,7 @@ import org.jooq.impl.TableImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Student extends TableImpl<StudentRecord> {
 
-    private static final long serialVersionUID = -307166488;
+    private static final long serialVersionUID = -709133644;
 
     /**
      * The reference instance of <code>test.student</code>
@@ -49,7 +50,7 @@ public class Student extends TableImpl<StudentRecord> {
     /**
      * The column <code>test.student.id</code>.
      */
-    public final TableField<StudentRecord, Integer> ID = createField(DSL.name("id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+    public final TableField<StudentRecord, Integer> ID = createField(DSL.name("id"), org.jooq.impl.SQLDataType.INTEGER.nullable(false).identity(true), this, "");
 
     /**
      * The column <code>test.student.name</code>.
@@ -60,11 +61,6 @@ public class Student extends TableImpl<StudentRecord> {
      * The column <code>test.student.score</code>.
      */
     public final TableField<StudentRecord, Long> SCORE = createField(DSL.name("score"), org.jooq.impl.SQLDataType.BIGINT, this, "");
-
-    /**
-     * The column <code>test.student.class</code>.
-     */
-    public final TableField<StudentRecord, String> CLASS = createField(DSL.name("class"), org.jooq.impl.SQLDataType.VARCHAR(255), this, "");
 
     /**
      * The column <code>test.student.age</code>.
@@ -110,6 +106,11 @@ public class Student extends TableImpl<StudentRecord> {
     }
 
     @Override
+    public Identity<StudentRecord, Integer> getIdentity() {
+        return Keys.IDENTITY_STUDENT;
+    }
+
+    @Override
     public UniqueKey<StudentRecord> getPrimaryKey() {
         return Keys.KEY_STUDENT_PRIMARY;
     }
@@ -146,11 +147,11 @@ public class Student extends TableImpl<StudentRecord> {
     }
 
     // -------------------------------------------------------------------------
-    // Row5 type methods
+    // Row4 type methods
     // -------------------------------------------------------------------------
 
     @Override
-    public Row5<Integer, String, Long, String, Integer> fieldsRow() {
-        return (Row5) super.fieldsRow();
+    public Row4<Integer, String, Long, Integer> fieldsRow() {
+        return (Row4) super.fieldsRow();
     }
 }

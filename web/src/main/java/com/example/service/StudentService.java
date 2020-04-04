@@ -13,4 +13,10 @@ public interface StudentService {
     List<Student> list();
 
     Student one(Integer id);
+
+    void delete(List<Integer> id);
+
+    void update(Student student);
+
+    Integer insert(Student student);
 }
